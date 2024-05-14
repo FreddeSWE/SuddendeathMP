@@ -95,7 +95,7 @@ function onChatMessageHandler(player_id, player_name, message)
         interval = tonumber(string.match(message, "%d+")) * 60 --convert interval to minutes
         if interval > 1800 then -- if interval is more than 30 minutes, default to 30 minutes
             interval = 1800
-            MP.SendChatMessage(player_id, "Sudden Death can only be 30 minutes at most, defaulting to 30 minutes.")
+            MP.SendChatMessage(player_id, "Sudden Death is capped at 30 minutes, defaulting to 30 minutes.")
         end
         if not suddenDeath then --if sudden death is not already running
             suddenDeathInterval = interval --set interval to input interval, set in minutes
@@ -113,7 +113,7 @@ function onChatMessageHandler(player_id, player_name, message)
         suddenDeath = false --turn off sudden death
         honkNotified = false --reset the notification
         suddenDeathInterval = defaultInterval --reset to default interval
-        MP.SendChatMessage(-1, "Sudden Death has been stopped") --tell everyone sudden death has stopped
+        MP.SendChatMessage(-1, "Sudden Death has been stopped by: " .. player_name ) --tell everyone sudden death has stopped
         initID = nil
         return 1 --suppress chat message
     end
